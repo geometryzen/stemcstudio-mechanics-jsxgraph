@@ -31,19 +31,21 @@
 
     <script>
         System.register('./index.js', ['jsxgraph', '@stemcstudio/mechanics-jsxgraph'], function () {
-            let jsxgraph
+            let jxg
             let diagram
             return {
-                setters: [function (m) { jsxgraph = m; }, function (m) { diagram = m; }],
+                setters: [function (m) { jxg = m; }, function (m) { diagram = m; }],
                 execute: function () {
-                    const board = jsxgraph.JSXGraph.initBoard('jxgbox', {
+                    const board = jxg.JSXGraph.initBoard('jxgbox', {
                         axis: true,
                         boundingBox: [-6, 6, 6, -6],
                         showCopyright: true,
                         showNavigation: false,
                         showScreenshot: true
                     });
-                    new diagram.Beam(board);
+                    const pointA = board.create("point", [0, 0], { visible: false })
+                    const pointB = board.create("point", [4, 0], { visible: true, strokeColor: 'blue', fillColor: 'blue' })
+                    new diagram.Beam(board, pointA, pointB, 0.5);
                     board.update();
                 }
             };

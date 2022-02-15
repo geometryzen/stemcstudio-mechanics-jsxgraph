@@ -1,8 +1,109 @@
 import { Board, Point } from 'jsxgraph';
 
 export class Beam {
-    readonly point: Point;
-    constructor(public readonly board: Board) {
-        this.point = board.create("point", [0, 0]);
+    readonly pointA: Point;
+    readonly pointB: Point;
+    private readonly hiddenPt1: Point;
+    private readonly hiddenPt2: Point;
+    private readonly hiddenPt3: Point;
+    private readonly hiddenPt4: Point;
+    constructor(public readonly board: Board, posA: [x: number, y: number] | Point, posB: [x: number, y: number] | Point, radius: number) {
+        if (Array.isArray(posA)) {
+            this.pointA = board.create("point", posA, { size: 0, withLabel: false });
+        } else {
+            this.pointA = board.create("point", [function () { return posA.X() }, function () { return posA.Y() }], { size: 0, withLabel: false });
+        }
+        if (Array.isArray(posB)) {
+            this.pointB = board.create("point", posB, { size: 0, withLabel: false });
+        } else {
+            this.pointB = board.create("point", [function () { return posB.X() }, function () { return posB.Y() }], { size: 0, withLabel: false });
+        }
+        /**
+         * Uses similar triangles to compute the points on the corners of the beam.
+         */
+        const compute_x_y_dx_dy_c = () => {
+            const x = this.pointA.X();
+            const y = this.pointA.Y();
+            const dx = this.pointB.X() - x;
+            const dy = this.pointB.Y() - y;
+            const l = Math.sqrt(dx ** 2 + dy ** 2);
+            const c = radius / l;
+            return { x, y, dx, dy, c }
+        }
+        const point1 = board.create("point",
+            [
+                () => {
+                    const { x, dy, c } = compute_x_y_dx_dy_c()
+                    return x + c * dy
+                },
+                () => {
+                    const { y, dx, c } = compute_x_y_dx_dy_c()
+                    return y - c * dx
+                }
+            ], { visible: false }
+        )
+        const point2 = board.create("point",
+            [
+                () => {
+                    const { x, dx, dy, c } = compute_x_y_dx_dy_c()
+                    return x + dx + c * dy
+                },
+                () => {
+                    const { y, dx, dy, c } = compute_x_y_dx_dy_c()
+                    return y + dy - c * dx
+                }
+            ], { visible: false }
+        )
+        const point3 = board.create("point",
+            [
+                () => {
+                    const { x, dx, dy, c } = compute_x_y_dx_dy_c()
+                    return x + dx - c * dy
+                },
+                () => {
+                    const { y, dx, dy, c } = compute_x_y_dx_dy_c()
+                    return y + dy + c * dx
+                }
+            ], { visible: false }
+        )
+        const point4 = board.create("point",
+            [
+                () => {
+                    const { x, dy, c } = compute_x_y_dx_dy_c()
+                    return x - c * dy
+                },
+                () => {
+                    const { y, dx, c } = compute_x_y_dx_dy_c()
+                    return y + c * dx
+                }
+            ], { visible: false }
+        )
+        board.create('segment', [point1, point2], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [point2, point3], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [point3, point4], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [point4, point1], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('polygon', [point1, point2, point3, point4], {
+            fillOpacity: 1,
+            fillColor: 'lightgray'
+        })
+        /*
+        const gradientAngle = () => {
+            // SVG considers the gradient angle to run clockwise, so we must flip the sign.
+            return (Math.PI / 2) - Math.atan2(this.pointB.Y() - this.pointA.Y(), this.pointB.X() - this.pointA.X())
+        }
+        */
+        /*
+        board.create('polygon', [point1, point2, point3, point4], {
+            fillOpacity: 1,
+            fillColor: 'lightgray',
+            gradient: 'linear',
+            gradientSecondColor: 'black',
+            gradientAngle,
+            // gradientAngle: function () { return a.Value() },
+            // gradientStartOffset: function () { return b.Value() },
+            // gradientEndOffset: function () { return c.Value() },
+            hasInnerPoints: true
+        })
+        */
     }
 }

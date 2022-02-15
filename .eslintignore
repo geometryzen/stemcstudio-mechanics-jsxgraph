@@ -3,5 +3,7 @@ node_modules/
 typings/
 #==============================================================================
 #
-test/jsxgraph-mock.ts
+test/mocks/MockBoard.ts
+test/mocks/MockPoint.ts
+test/mocks/MockSegment.ts
 #==============================================================================

@@ -1,6 +1,6 @@
 {
   "name": "@stemcstudio/mechanics-jsxgraph",
-  "version": "0.9.0",
+  "version": "0.9.3",
   "description": "Mechanics Diagrams using JSXGraph",
   "browser": "dist/umd/index.js",
   "main": "dist/esm/index.js",
@@ -50,8 +50,8 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5",
-    "typedoc": "^0.22.11"
+    "typedoc": "^0.22.11",
+    "typescript": "^4.5.5"
   },
   "peerDependencies": {
     "jsxgraph": "^1.4.2"
