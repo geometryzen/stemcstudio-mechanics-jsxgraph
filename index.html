@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>localhost</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <base href="/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraph.css">
+    <link rel="icon" type="image/x-icon" href="https://stemcstudio.com/favicon.ico">
+    <style>
+        body {
+            background: #cccccc;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraphcore.min.js"></script>
+    <script src="https://unpkg.com/systemjs@0.19.34/dist/system.js"></script>
+</head>
+
+<body>
+    <script>
+        System.config({
+            "warnings": false,
+            "map": {
+                "jsxgraph": "https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraphcore.js",
+                "@stemcstudio/mechanics-jsxgraph": "../dist/umd/index.js"
+            }
+        });
+    </script>
+    <div id="jxgbox" class="jxgbox" style="width:500px; height:500px"></div>
+
+    <script>
+        System.register('./index.js', ['jsxgraph', '@stemcstudio/mechanics-jsxgraph'], function () {
+            let jsxgraph
+            let diagram
+            return {
+                setters: [function (m) { jsxgraph = m; }, function (m) { diagram = m; }],
+                execute: function () {
+                    const board = jsxgraph.JSXGraph.initBoard('jxgbox', {
+                        axis: true,
+                        boundingBox: [-6, 6, 6, -6],
+                        showCopyright: true,
+                        showNavigation: false,
+                        showScreenshot: true
+                    });
+                    new diagram.Beam(board);
+                    board.update();
+                }
+            };
+        });
+    </script>
+    <script>
+        System.defaultJSExtensions = true
+        System.import('./index.js').catch(function (e) { console.error(e) })
+    </script>
+</body>
+
+</html>
