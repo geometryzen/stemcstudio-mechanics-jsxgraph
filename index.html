@@ -37,18 +37,27 @@
                 setters: [function (m) { jxg = m; }, function (m) { diagram = m; }],
                 execute: function () {
                     const board = jxg.JSXGraph.initBoard('jxgbox', {
-                        axis: true,
-                        boundingBox: [-6, 6, 6, -6],
-                        showCopyright: true,
+                        axis: false,
+                        grid: true,
+                        boundingBox: [-1, 4, 7, -4],
+                        showCopyright: false,
                         showNavigation: false,
                         showScreenshot: true
                     });
-                    const pointA = board.create("point", [-4, 0], { visible: true })
-                    const pointB = board.create("point", [0, 0], { visible: true })
-                    const pointC = board.create("point", [5, 4])
+                    const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+                    const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+                    const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+                    const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+
                     new diagram.Beam(board, pointA, pointB, 0.15)
-                    const rope = new diagram.Rope(board, pointB, 0, pointC, 1)
-                    board.create("circle", [pointC, rope.tangentPoint2])
+                    const rope = new diagram.Rope(board, pointB, 0, pointD, 0.3)
+                    const bar = new diagram.Bar(board, pointB, pointC)
+                    const fixA = new diagram.Fixture(board, pointA, 0)
+                    const fixB = new diagram.Fixture(board, pointB, 0)
+                    const fixC = new diagram.Fixture(board, pointC, 0)
+                    const fixD = new diagram.Fixture(board, pointD, 0)
+                    const wheeleD = new diagram.Wheel(board, pointD, 0.3)
+                    const distribLoad = new diagram.DistributedLoad(board, [0, 0.3], [3, 0.3], 0.7, 0.7, 0)
                     board.update()
                 }
             };

@@ -1,8 +1,9 @@
-import { Board, Point } from 'jsxgraph';
+import { Board, Point, SegmentAttributes } from 'jsxgraph';
 
 export class Rope {
     readonly tangentPoint1: Point;
     readonly tangentPoint2: Point;
+    // TODO: Replace r1, r2 with control points?
     constructor(public readonly board: Board, public readonly C1: Point, r1: number, public readonly C2: Point, r2: number) {
         this.tangentPoint1 = board.create("point",
             [
@@ -30,8 +31,8 @@ export class Rope {
         )
         // board.create("circle", [C1, point1])
         // board.create("circle", [C2, point2])
-        board.create("segment", [this.tangentPoint1, this.tangentPoint2])
-
+        const atts: SegmentAttributes = { strokeWidth: 2, strokeColor: "black", lineCap: 'round' } as SegmentAttributes
+        board.create("segment", [this.tangentPoint1, this.tangentPoint2], atts)
     }
 }
 
