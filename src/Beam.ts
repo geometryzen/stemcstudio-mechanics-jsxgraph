@@ -3,10 +3,6 @@ import { Board, Point } from 'jsxgraph';
 export class Beam {
     readonly pointA: Point;
     readonly pointB: Point;
-    private readonly hiddenPt1: Point;
-    private readonly hiddenPt2: Point;
-    private readonly hiddenPt3: Point;
-    private readonly hiddenPt4: Point;
     constructor(public readonly board: Board, posA: [x: number, y: number] | Point, posB: [x: number, y: number] | Point, radius: number) {
         if (Array.isArray(posA)) {
             this.pointA = board.create("point", posA, { size: 0, withLabel: false });
@@ -30,7 +26,7 @@ export class Beam {
             const c = radius / l;
             return { x, y, dx, dy, c }
         }
-        const point1 = board.create("point",
+        const cornerPoint1 = board.create("point",
             [
                 () => {
                     const { x, dy, c } = compute_x_y_dx_dy_c()
@@ -42,7 +38,7 @@ export class Beam {
                 }
             ], { visible: false }
         )
-        const point2 = board.create("point",
+        const cornerPoint2 = board.create("point",
             [
                 () => {
                     const { x, dx, dy, c } = compute_x_y_dx_dy_c()
@@ -54,7 +50,7 @@ export class Beam {
                 }
             ], { visible: false }
         )
-        const point3 = board.create("point",
+        const cornerPoint3 = board.create("point",
             [
                 () => {
                     const { x, dx, dy, c } = compute_x_y_dx_dy_c()
@@ -66,7 +62,7 @@ export class Beam {
                 }
             ], { visible: false }
         )
-        const point4 = board.create("point",
+        const cornerPoint4 = board.create("point",
             [
                 () => {
                     const { x, dy, c } = compute_x_y_dx_dy_c()
@@ -78,11 +74,11 @@ export class Beam {
                 }
             ], { visible: false }
         )
-        board.create('segment', [point1, point2], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [point2, point3], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [point3, point4], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [point4, point1], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('polygon', [point1, point2, point3, point4], {
+        board.create('segment', [cornerPoint1, cornerPoint2], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [cornerPoint2, cornerPoint3], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [cornerPoint3, cornerPoint4], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [cornerPoint4, cornerPoint1], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('polygon', [cornerPoint1, cornerPoint2, cornerPoint3, cornerPoint4], {
             fillOpacity: 1,
             fillColor: 'lightgray'
         })

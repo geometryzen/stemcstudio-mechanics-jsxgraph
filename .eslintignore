@@ -4,6 +4,8 @@ typings/
 #==============================================================================
 #
 test/mocks/MockBoard.ts
+test/mocks/MockCircle.ts
 test/mocks/MockPoint.ts
+test/mocks/MockPolygon.ts
 test/mocks/MockSegment.ts
 #==============================================================================

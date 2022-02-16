@@ -1,5 +1,7 @@
 import { Board, BoardAttributes } from 'jsxgraph';
+import { MockCircle } from './MockCircle';
 import { MockPoint } from './MockPoint';
+import { MockPolygon } from './MockPolygon';
 import { MockSegment } from './MockSegment';
 
 export class MockBoard implements Board {
@@ -181,8 +183,14 @@ export class MockBoard implements Board {
     create(elementType: 'turtle', parents?: unknown[], attributes?: JXG.TurtleAttributes): JXG.Turtle;
     create(elementType: string, parents?: unknown[], attributes?: unknown): unknown {
         switch (elementType) {
+            case 'circle': {
+                return new MockCircle(this, elementType, parents);
+            }
             case 'point': {
                 return new MockPoint(this, elementType, parents);
+            }
+            case 'polygon': {
+                return new MockPolygon(this, elementType, parents);
             }
             case 'segment': {
                 return new MockSegment(this, elementType, parents);
