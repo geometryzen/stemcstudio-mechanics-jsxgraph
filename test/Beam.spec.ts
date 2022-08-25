@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { Board } from 'jsxgraph';
 import { Beam } from '../src';
 import { MockBoard } from "./mocks/MockBoard";
 import { MockPoint } from './mocks/MockPoint';
@@ -6,7 +7,7 @@ import { MockPoint } from './mocks/MockPoint';
 describe("Beam", function () {
     describe("constructor", function () {
         // const board = JSXGraph.initBoard('board');
-        const board = new MockBoard()
+        const board = new MockBoard() as unknown as Board
         const beam = new Beam(board, [0, 0], [3, 0], 0.15);
         it("beam.board", function () {
             assert.strictEqual(beam.board, board);

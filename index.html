@@ -6,14 +6,14 @@
     <title>localhost</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <base href="/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraph.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraph.css">
     <link rel="icon" type="image/x-icon" href="https://stemcstudio.com/favicon.ico">
     <style>
         body {
             background: #cccccc;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraphcore.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraphcore.min.js"></script>
     <script src="https://unpkg.com/systemjs@0.19.34/dist/system.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
         System.config({
             "warnings": false,
             "map": {
-                "jsxgraph": "https://cdn.jsdelivr.net/npm/jsxgraph@1.4.2/distrib/jsxgraphcore.js",
+                "jsxgraph": "https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraphcore.js",
                 "@stemcstudio/mechanics-jsxgraph": "../dist/umd/index.js"
             }
         });
@@ -40,7 +40,7 @@
                         axis: false,
                         grid: true,
                         boundingBox: [-1, 4, 7, -4],
-                        showCopyright: false,
+                        showCopyright: true,
                         showNavigation: false,
                         showScreenshot: true
                     });

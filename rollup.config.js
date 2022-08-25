@@ -1,9 +1,11 @@
-import resolve from '@rollup/plugin-node-resolve';
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 // import { terser } from 'rollup-plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
-import dts from 'rollup-plugin-dts';
 
 const packageJson = require('./package.json');
 
@@ -24,8 +26,13 @@ export default [
                 name: 'stemcstudioMechanicsJsxGraph'
             },
             {
-                file: packageJson.main,
+                file: packageJson.module,
                 format: 'esm',
+                sourcemap: true
+            },
+            {
+                file: packageJson.system,
+                format: 'system',
                 sourcemap: true
             }
         ],
@@ -38,7 +45,7 @@ export default [
         ]
     },
     {
-        input: 'dist/esm/types/src/index.d.ts',
+        input: 'dist/esm/index.d.ts',
         output: [{ file: packageJson.types, format: "esm" }],
         plugins: [dts()],
     }

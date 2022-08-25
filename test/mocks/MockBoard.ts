@@ -124,67 +124,10 @@ export class MockBoard implements Board {
     clickUpArrow(): this {
         throw new Error('Method not implemented.');
     }
-    create(elementType: 'angle', parents: unknown[], attributes?: JXG.AngleAttributes): JXG.Angle;
-    create(elementType: 'arc', parents: unknown[], attributes?: JXG.ArcAttributes): JXG.Arc;
-    create(elementType: 'arrow', parents: unknown[], attributes?: JXG.ArrowAttributes): JXG.Arrow;
-    create(elementType: 'axis', parents: unknown[], attributes?: JXG.AxisAttributes): JXG.Axis;
-    create(elementType: 'bisector', parents: unknown[], attributes?: JXG.BisectorAttributes): JXG.Bisector;
-    create(elementType: 'button', parents: unknown[], attributes?: JXG.ButtonAttributes): JXG.Button;
-    create(elementType: 'cardinalspline', parents: unknown[], attributes?: JXG.CardinalsplineAttributes): JXG.Cardinalspline;
-    create(elementType: 'chart', parents: unknown[], attributes?: JXG.ChartAttributes): JXG.Chart;
-    create(elementType: 'checkbox', parents: unknown[], attributes?: JXG.CheckboxAttributes): JXG.Checkbox;
-    create(elementType: 'circle', parents: unknown[], attributes?: JXG.CircleAttributes): JXG.Circle;
-    create(elementType: 'circumcircle', parents: unknown[], attributes?: JXG.CircumcircleAttributes): JXG.Circumcircle;
-    create(elementType: 'circumcirclearc', parents: unknown[], attributes?: JXG.CircumcircleArcAttributes): JXG.CircumcircleArc;
-    create(elementType: 'circumcirclesector', parents: unknown[], attributes?: JXG.CircumcircleSectorAttributes): JXG.CircumcircleSector;
-    create(elementType: 'comb', parents: unknown[], attributes?: JXG.CombAttributes): JXG.Comb;
-    create(elementType: 'conic', parents: unknown[], attributes?: JXG.ConicAttributes): JXG.Conic;
-    create(elementType: 'curve', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Curve;
-    create(elementType: 'curvedifference', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Curve;
-    create(elementType: 'curveintersection', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Curve;
-    create(elementType: 'curveunion', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Curve;
-    create(elementType: 'ellipse', parents: unknown[], attributes?: JXG.EllipseAttributes): JXG.Ellipse;
-    create(elementType: 'functiongraph', parents: unknown[] | ((x: number) => number), attributes?: JXG.FunctiongraphAttributes): JXG.Functiongraph;
-    create(elementType: 'glider', parents: unknown[], attributes?: JXG.GliderAttributes): JXG.Glider;
-    create(elementType: 'grid', parents: unknown[], attributes?: JXG.GridAttributes): JXG.Grid;
-    create(elementType: 'group', parents: unknown[], attributes?: JXG.GroupAttributes): JXG.Group;
-    create(elementType: 'hatch', parents: unknown[], attributes?: JXG.HatchAttributes): JXG.Hatch;
-    create(elementType: 'hyperbola', parents: unknown[], attributes?: {}): JXG.Hyperbola;
-    create(elementType: 'image', parents: unknown[], attributes?: JXG.ImageAttributes): JXG.Image;
-    create(elementType: 'input', parents: unknown[], attributes?: JXG.InputAttributes): JXG.Input;
-    create(elementType: 'integral', parents: unknown[], attributes?: JXG.IntegralAttributes): JXG.Integral;
-    create(elementType: 'intersection', parents: unknown[], attributes?: JXG.IntersectionAttributes): JXG.Intersection;
-    create(elementType: 'line', parents: unknown[], attributes?: JXG.LineAttributes): JXG.Line;
-    create(elementType: 'metapostspline', parents: unknown[], attributes?: JXG.MetapostsplineAttributes): JXG.Metapostspline;
-    create(elementType: 'midpoint', parents: unknown[], attributes?: JXG.MidpointAttributes): JXG.Midpoint;
-    create(elementType: 'minorArc', parents: unknown[], attributes?: JXG.MinorArcAttributes): JXG.MinorArc;
-    create(elementType: 'mirrorelement', parents: unknown[], attributes?: JXG.MirrorelementAttributes): JXG.Mirrorelement;
-    create(elementType: 'normal', parents: unknown[], attributes?: JXG.NormalAttributes): JXG.Normal;
-    create(elementType: 'perpendicular', parents: unknown[], attributes?: JXG.PerpendicularAttributes): JXG.Perpendicular;
-    create(elementType: 'plot', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Curve;
-    create(elementType: 'point', parents: unknown[], attributes?: JXG.PointAttributes): JXG.Point;
-    create(elementType: 'polygon', parents: unknown[], attributes?: JXG.PolygonAttributes): JXG.Polygon;
-    create(elementType: 'polygonalchain', parents: unknown[], attributes?: JXG.PolygonAttributes): JXG.Polygon;
-    create(elementType: 'regularpolygon', parents: unknown[], attributes?: JXG.PolygonAttributes): JXG.Polygon;
-    create(elementType: 'reflection', parents: unknown[], attributes?: JXG.ReflectionAttributes): JXG.Reflection;
-    create(elementType: 'riemannsum', parents: unknown[], attributes?: JXG.CurveAttributes): JXG.Riemannsum;
-    create(elementType: 'sector', parents: unknown[], attributes?: JXG.SectorAttributes): JXG.Sector;
-    create(elementType: 'semicircle', parents: unknown[], attributes?: JXG.SemicircleAttributes): JXG.Semicircle;
-    create(elementType: 'segment', parents: unknown[], attributes?: JXG.SegmentAttributes): JXG.Segment;
-    create(elementType: 'slider', parents: unknown[], attributes?: JXG.SliderAttributes): JXG.Slider;
-    create(elementType: 'slopetriangle', parents: unknown[], attributes?: JXG.SlopetriangleAttributes): JXG.Slopetriangle;
-    create(elementType: 'stepfunction', parents: unknown[], attributes?: JXG.StepfunctionAttributes): JXG.Stepfunction;
-    create(elementType: 'tangent', parents: unknown[], attributes?: JXG.TangentAttributes): JXG.Tangent;
-    create(elementType: 'tapemeasure', parents?: unknown[], attributes?: JXG.TapemeasureAttributes): JXG.Tapemeasure;
-    create(elementType: 'text', parents: unknown[], attributes?: JXG.TextAttributes): JXG.Text;
-    create(elementType: 'ticks', parents: unknown[], attributes?: JXG.TicksAttributes): JXG.Ticks;
-    create(elementType: 'tracecurve', parents: unknown[], attributes?: JXG.TracecurveAttributes): JXG.Tracecurve;
-    create(elementType: 'transform', parents: unknown[], attributes?: JXG.TransformationAttributes): JXG.Transformation;
-    create(elementType: 'turtle', parents?: unknown[], attributes?: JXG.TurtleAttributes): JXG.Turtle;
     create(elementType: string, parents?: unknown[], attributes?: unknown): unknown {
         switch (elementType) {
             case 'circle': {
-                return new MockCircle(this, elementType, parents);
+                return new MockCircle(this as unknown as Board, elementType, parents);
             }
             case 'point': {
                 return new MockPoint(this, elementType, parents);
