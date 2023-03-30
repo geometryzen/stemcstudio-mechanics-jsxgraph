@@ -23,8 +23,8 @@ export class Fixture {
             [+ 0.8 * a, - a],
             [0, - 1.9 * a] // label
         ]
-        const p = []
-        for (const c of coords) { p.push(board.create('point', c, { visible: false })) }
+        const p: Point[] = []
+        for (const c of coords) { p.push(board.create('point', c, { fixed: true, visible: false })) }
         const t1 = board.create('transform', [attitude], { type: 'rotate' })
         t1.applyOnce(p)
         const t2 = board.create('transform', XY(pivot), { type: 'translate' })
@@ -37,7 +37,10 @@ export class Fixture {
         board.create('polygon', [p[0], p[1], p[2]], {
             name: '',
             fillColor: "white", opacity: 1, layer: 7,
-            borders: { strokeWidth: 2, strokeColor: 'black', lineCap: 'round', layer: 8 }, vertices: { fixed: true, size: 0 }
+            borders: { strokeWidth: 2, strokeColor: 'black', lineCap: 'round', layer: 8 },
+            vertices: { fixed: true, size: 0 },
+            fixed: true,
+            frozen: true
         } as PolygonAttributes)
 
         board.create('segment', [p[3], p[4]], { strokeWidth: 2, strokeColor: 'black', lineCap: 'round' } as SegmentAttributes)

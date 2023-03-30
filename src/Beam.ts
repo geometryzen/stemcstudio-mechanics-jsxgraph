@@ -3,15 +3,24 @@ import { Board, Point } from 'jsxgraph';
 export class Beam {
     readonly pointA: Point;
     readonly pointB: Point;
+    /**
+     * 
+     * @param board 
+     * @param posA 
+     * @param posB 
+     * @param radius 
+     */
     constructor(public readonly board: Board, posA: [x: number, y: number] | Point, posB: [x: number, y: number] | Point, radius: number) {
         if (Array.isArray(posA)) {
             this.pointA = board.create("point", posA, { size: 0, withLabel: false });
-        } else {
+        }
+        else {
             this.pointA = board.create("point", [function () { return posA.X() }, function () { return posA.Y() }], { size: 0, withLabel: false });
         }
         if (Array.isArray(posB)) {
             this.pointB = board.create("point", posB, { size: 0, withLabel: false });
-        } else {
+        }
+        else {
             this.pointB = board.create("point", [function () { return posB.X() }, function () { return posB.Y() }], { size: 0, withLabel: false });
         }
         /**

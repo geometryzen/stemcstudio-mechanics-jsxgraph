@@ -6,14 +6,14 @@
     <title>localhost</title>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <base href="/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraph.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.5.0/distrib/jsxgraph.css">
     <link rel="icon" type="image/x-icon" href="https://stemcstudio.com/favicon.ico">
     <style>
         body {
             background: #cccccc;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraphcore.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.5.0/distrib/jsxgraphcore.min.js"></script>
     <script src="https://unpkg.com/systemjs@0.19.34/dist/system.js"></script>
 </head>
 
@@ -22,7 +22,7 @@
         System.config({
             "warnings": false,
             "map": {
-                "jsxgraph": "https://cdn.jsdelivr.net/npm/jsxgraph@1.4.5/distrib/jsxgraphcore.js",
+                "jsxgraph": "https://cdn.jsdelivr.net/npm/jsxgraph@1.5.0/distrib/jsxgraphcore.js",
                 "@stemcstudio/mechanics-jsxgraph": "../dist/umd/index.js"
             }
         });
@@ -44,10 +44,10 @@
                         showNavigation: false,
                         showScreenshot: true
                     });
-                    const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
-                    const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
-                    const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
-                    const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+                    const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
+                    const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
+                    const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
+                    const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
 
                     new diagram.Beam(board, pointA, pointB, 0.15)
                     const rope = new diagram.Rope(board, pointB, 0, pointD, 0.3)

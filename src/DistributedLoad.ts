@@ -22,7 +22,7 @@ export class DistributedLoad {
                     p[2 * i + j][0] * s[j] + p[2 * i + j][1] * c[j] + begin[1] + s[1] * (i * width / Math.floor(width / a))]
             }
             board.create('arrow', [p[2 * i], p[2 * i + 1]],
-                { lastArrow: { size: 5 }, strokewidth: 1 } as JXG.ArrowAttributes)
+                { lastArrow: { size: 5 }, strokewidth: 1, fixed: true, frozen: true } as JXG.ArrowAttributes)
         }
         board.create('polygon',
             [p[0], p[1], p[p.length - 1], p[p.length - 2]],
