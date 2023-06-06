@@ -1,6 +1,5 @@
 import { Board, Point, PolygonAttributes, SegmentAttributes } from 'jsxgraph';
 import { fnXY } from './math/fnXY';
-import { XY } from './math/XY';
 
 export const pxunit = 1 / 40
 
@@ -11,29 +10,23 @@ export class Fixture {
      * @param pivot 
      * @param attitude 
      */
-    constructor(board: Board, pivot: Point, attitude: number) {
+    constructor(board: Board, pivot: Point) {
         // The problem with this implementation is that it is not dynamic.
         // I think I want all widgets to have control points.
         const a = 2 / 5
-        const coords = [
+        const coords: [() => number, () => number][] = [
             [0, 0],
             [-a / 2, -a],
             [+a / 2, -a],
             [- 0.8 * a, - a],
             [+ 0.8 * a, - a],
             [0, - 1.9 * a] // label
-        ]
+        ].map((c) => { return [() => c[0] + pivot.X(), () => c[1] + pivot.Y()] })
         const p: Point[] = []
-        for (const c of coords) { p.push(board.create('point', c, { fixed: true, visible: false })) }
-        const t1 = board.create('transform', [attitude], { type: 'rotate' })
-        t1.applyOnce(p)
-        const t2 = board.create('transform', XY(pivot), { type: 'translate' })
-        t2.applyOnce(p)
+        for (const c of coords) { p.push(board.create('point', c, { fixed: false, visible: false })) }
 
         board.create('point', fnXY(pivot), { withLabel: false, fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
 
-        // const lineAtts: LineAttributes = {strokeWidth:2,strokeColor:"black",layer:8}
-        // const atts: PolygonAttributes = {name:'',fillColor:"white",opacity:1,layer:7,borders:lineAtts,vertices}
         board.create('polygon', [p[0], p[1], p[2]], {
             name: '',
             fillColor: "white", opacity: 1, layer: 7,

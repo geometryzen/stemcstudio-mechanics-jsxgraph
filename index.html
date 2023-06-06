@@ -44,10 +44,10 @@
                         showNavigation: false,
                         showScreenshot: true
                     });
-                    const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
-                    const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
-                    const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
-                    const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: true })
+                    const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
+                    const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
+                    const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
+                    const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
 
                     new diagram.Beam(board, pointA, pointB, 0.15)
                     const rope = new diagram.Rope(board, pointB, 0, pointD, 0.3)
