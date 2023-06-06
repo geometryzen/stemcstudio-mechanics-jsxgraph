@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "es6",
+        "module": "esnext",
         "sourceMap": true,
         "outDir": "build",
         "strict": true,
@@ -17,9 +17,11 @@
         "strictNullChecks": true,
         "declaration": true,
         "declarationDir": "types",
-        "emitDeclarationOnly": true
+        "emitDeclarationOnly": true,
+        "resolveJsonModule": true
     },
     "include": [
-        "./src/**/*.ts"
+        "./src/**/*.ts",
+        "rollup.config.mts"
     ]
 }

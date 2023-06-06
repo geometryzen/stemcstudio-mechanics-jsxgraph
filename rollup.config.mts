@@ -1,15 +1,12 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
+import { InputPluginOption, RollupOptions } from 'rollup';
 import dts from 'rollup-plugin-dts';
-// import { terser } from 'rollup-plugin-terser';
 import external from 'rollup-plugin-peer-deps-external';
+import packageJson from './package.json' assert { type: 'json' };
 
-import packageJson from './package.json' assert {type:'json'};
-
-export default [
+const options: RollupOptions[] = [
     {
         input: 'src/index.ts',
         output: [
@@ -37,7 +34,7 @@ export default [
             }
         ],
         plugins: [
-            external(),
+            external() as InputPluginOption,
             resolve(),
             commonjs(),
             typescript({ tsconfig: './tsconfig.json' }),
@@ -49,4 +46,6 @@ export default [
         output: [{ file: packageJson.types, format: "esm" }],
         plugins: [dts()],
     }
-]
+];
+
+export default options;
