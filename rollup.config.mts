@@ -1,5 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import { InputPluginOption, RollupOptions } from 'rollup';
 import dts from 'rollup-plugin-dts';
@@ -11,26 +12,45 @@ const options: RollupOptions[] = [
         input: 'src/index.ts',
         output: [
             {
-                file: packageJson.browser,
+                file: "./dist/umd/index.js",
                 format: 'umd',
                 sourcemap: true,
                 name: "stemcstudioMechanicsJsxGraph",
             },
             {
-                file: packageJson.main,
+                file: "./dist/umd/index.min.js",
+                format: 'umd',
+                sourcemap: true,
+                name: "stemcstudioMechanicsJsxGraph",
+                plugins: [terser()]
+            },
+            {
+                file: "./dist/cjs/index.js",
                 format: 'cjs',
                 sourcemap: true,
                 name: 'stemcstudioMechanicsJsxGraph'
             },
             {
-                file: packageJson.module,
+                file: "./dist/esm/index.js",
                 format: 'esm',
                 sourcemap: true
             },
             {
-                file: packageJson.system,
+                file: "./dist/esm/index.min.js",
+                format: 'esm',
+                sourcemap: true,
+                plugins: [terser()]
+            },
+            {
+                file: "./dist/system/index.js",
                 format: 'system',
                 sourcemap: true
+            },
+            {
+                file: "./dist/system/index.min.js",
+                format: 'system',
+                sourcemap: true,
+                plugins: [terser()]
             }
         ],
         plugins: [

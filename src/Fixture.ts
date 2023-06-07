@@ -21,8 +21,6 @@ class FixtureImpl implements Fixture {
     constructor(board: Board, pivot: Point, attributes?: FixtureAttributes) {
         this.pivot = pivot;
         this.$strokeWidth = strokeWidth(attributes);
-        // The problem with this implementation is that it is not dynamic.
-        // I think I want all widgets to have control points.
         const a = 2 / 5
         const coords: [() => number, () => number][] = [
             [0, 0],
@@ -52,10 +50,10 @@ class FixtureImpl implements Fixture {
         board.create("comb", [p[4], p[3]], {
             fixed: true,
             width: 0.1,      // Default is 0.4
-            frequency: 0.1,  // Default is 0.2 (actuallly a spacing)
+            frequency: 0.1,  // Default is 0.2 (spacing)
             angle: 45 * Math.PI / 180,
             layer: 8,
-            // This does not appear to have any effect.
+            // This does not appear to have any effect...
             strokeWidth: this.$strokeWidth
         })
 
@@ -71,6 +69,6 @@ class FixtureImpl implements Fixture {
     }
 }
 
-export function fixture(board: Board, pivot: Point): Fixture {
-    return new FixtureImpl(board, pivot)
+export function fixture(board: Board, pivot: Point, attributes?: FixtureAttributes): Fixture {
+    return new FixtureImpl(board, pivot, attributes)
 }
