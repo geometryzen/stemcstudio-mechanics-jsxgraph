@@ -44,12 +44,19 @@
                         showNavigation: false,
                         showScreenshot: true
                     });
+                    const builder = new diagram.PointBuilder()
+
                     const pointA = board.create("point", [0, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
                     const pointB = board.create("point", [3, 0], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
                     const pointC = board.create("point", [5, -2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
                     const pointD = board.create("point", [5, 2], { fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5, fixed: false })
 
-                    new diagram.beam(board, pointA, pointB, { radius: 0.15 })
+                    diagram.beam(board, pointA, pointB, { radius: 0.15 })
+
+                    const pointE = builder.build(board, [0, 3])
+                    const pointF = builder.build(board, [3, 3])
+                    diagram.beam(board, pointE, pointF, { radius: 0.15 })
+
                     const rope = diagram.rope(board, pointB, 0, pointD, 0.3)
                     const bar = diagram.bar(board, pointB, pointC)
                     const fixA = new diagram.fixture(board, pointA, 0)

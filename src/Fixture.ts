@@ -1,5 +1,5 @@
 import { Board, Point, PolygonAttributes, SegmentAttributes } from 'jsxgraph';
-import { strokeWidth } from './defaults';
+import { DEFAULT_POINT_SIZE, strokeWidth } from './defaults';
 import { fnXY } from './math/fnXY';
 
 export interface Fixture {
@@ -35,7 +35,7 @@ class FixtureImpl implements Fixture {
         const p: Point[] = []
         for (const c of coords) { p.push(board.create('point', c, { fixed: false, visible: false })) }
 
-        board.create('point', fnXY(pivot), { withLabel: false, fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: this.$strokeWidth })
+        board.create('point', fnXY(pivot), { withLabel: false, fillColor: 'white', strokeColor: 'black', size: DEFAULT_POINT_SIZE, strokeWidth: this.$strokeWidth })
 
         board.create('polygon', [p[0], p[1], p[2]], {
             name: '',
