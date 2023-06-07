@@ -1,5 +1,5 @@
+export const DEFAULT_STROKE_COLOR = "black";
 export const DEFAULT_STROKE_WIDTH = 2;
-
 
 export function strokeWidth(attributes: { strokeWidth?: number } | undefined) {
     if (attributes && typeof attributes.strokeWidth === 'number') {

@@ -2,8 +2,6 @@ import { Board, Point, PolygonAttributes, SegmentAttributes } from 'jsxgraph';
 import { strokeWidth } from './defaults';
 import { fnXY } from './math/fnXY';
 
-export const pxunit = 1 / 40
-
 export interface Fixture {
     readonly pivot: Point;
 }
@@ -41,7 +39,9 @@ class FixtureImpl implements Fixture {
 
         board.create('polygon', [p[0], p[1], p[2]], {
             name: '',
-            fillColor: "white", opacity: 1, layer: 7,
+            fillColor: "white",
+            opacity: 1,
+            layer: 7,
             borders: { strokeWidth: this.$strokeWidth, strokeColor: 'black', lineCap: 'round', layer: 8 },
             vertices: { fixed: true, size: 0 },
             fixed: true,
@@ -51,8 +51,8 @@ class FixtureImpl implements Fixture {
         board.create('segment', [p[3], p[4]], { strokeWidth: this.$strokeWidth, strokeColor: 'black', lineCap: 'round' } as SegmentAttributes)
         board.create("comb", [p[4], p[3]], {
             fixed: true,
-            width: 4 * pxunit,
-            frequency: 4 * pxunit,
+            width: 0.1,      // Default is 0.4
+            frequency: 0.1,  // Default is 0.2 (actuallly a spacing)
             angle: 45 * Math.PI / 180,
             layer: 8,
             // This does not appear to have any effect.
@@ -67,14 +67,6 @@ class FixtureImpl implements Fixture {
             name: toTEX(data[1]),
             ...centeredLabelStyle
         })
-        // body
-        this.t = board.create('polygon', [p[0], p[1], p[2]], {
-            name: '', fillColor: "white", opacity: 1, layer: 7,
-            borders: { ...normalStyle, layer: 8 }, vertices: { fixed: true, size: 0 }
-        })
-        // baseline with hatch
-        this.bl = board.create('segment', [p[3], p[4]], { name: '', ...normalStyle })
-        this.c = board.create("comb", [p[4], p[3]], hatchStyle(pxunit))
         */
     }
 }
