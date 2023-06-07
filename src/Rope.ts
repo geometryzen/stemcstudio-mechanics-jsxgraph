@@ -1,5 +1,5 @@
 import { Board, Point, SegmentAttributes } from 'jsxgraph';
-import { DEFAULT_STROKE_WIDTH } from './defaults';
+import { strokeWidth } from './defaults';
 
 export interface Rope {
     readonly centerA: Point;
@@ -7,16 +7,7 @@ export interface Rope {
 }
 
 export interface RopeAttributes {
-    strokeWidth: number;
-}
-
-function strokeWidth(attributes: RopeAttributes | undefined) {
-    if (attributes && typeof attributes.strokeWidth === 'number') {
-        return attributes.strokeWidth;
-    }
-    else {
-        return DEFAULT_STROKE_WIDTH;
-    }
+    strokeWidth?: number;
 }
 
 class RopeImp implements Rope {
@@ -56,7 +47,7 @@ class RopeImp implements Rope {
         )
         // board.create("circle", [C1, point1])
         // board.create("circle", [C2, point2])
-        const atts: SegmentAttributes = { strokeWidth: 2, strokeColor: "black", lineCap: 'round' } as SegmentAttributes
+        const atts: SegmentAttributes = { strokeWidth: this.$strokeWidth, strokeColor: "black", lineCap: 'round' } as SegmentAttributes
         board.create("segment", [this.tangentPoint1, this.tangentPoint2], atts)
     }
 }

@@ -8,7 +8,7 @@ export interface Wheel {
 }
 
 export interface WheelAttributes {
-    strokeWidth: number;
+    strokeWidth?: number;
 }
 
 class WheelImp implements Wheel {

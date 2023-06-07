@@ -1,4 +1,5 @@
 import { Board, Point } from 'jsxgraph';
+import { strokeWidth } from './defaults';
 
 export interface Beam {
     readonly pointA: Point;
@@ -7,13 +8,14 @@ export interface Beam {
 
 export interface BeamAttributes {
     radius: number;
-    strokeWidth: number;
+    strokeWidth?: number;
 }
 
 class BeamImp {
     readonly pointA: Point;
     readonly pointB: Point;
     $radius: number;
+    $strokeWidth: number;
     /**
      * 
      * @param board 
@@ -35,6 +37,7 @@ class BeamImp {
             this.pointB = board.create("point", [function () { return posB.X() }, function () { return posB.Y() }], { size: 0, withLabel: false });
         }
         this.$radius = attributes.radius;
+        this.$strokeWidth = strokeWidth(attributes);
         /**
          * Uses similar triangles to compute the points on the corners of the beam.
          */
@@ -95,10 +98,10 @@ class BeamImp {
                 }
             ], { visible: false }
         )
-        board.create('segment', [cornerPoint1, cornerPoint2], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [cornerPoint2, cornerPoint3], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [cornerPoint3, cornerPoint4], { strokeColor: 'black', strokeWidth: 2 });
-        board.create('segment', [cornerPoint4, cornerPoint1], { strokeColor: 'black', strokeWidth: 2 });
+        board.create('segment', [cornerPoint1, cornerPoint2], { strokeColor: 'black', strokeWidth: this.$strokeWidth });
+        board.create('segment', [cornerPoint2, cornerPoint3], { strokeColor: 'black', strokeWidth: this.$strokeWidth });
+        board.create('segment', [cornerPoint3, cornerPoint4], { strokeColor: 'black', strokeWidth: this.$strokeWidth });
+        board.create('segment', [cornerPoint4, cornerPoint1], { strokeColor: 'black', strokeWidth: this.$strokeWidth });
         board.create('polygon', [cornerPoint1, cornerPoint2, cornerPoint3, cornerPoint4], {
             fillOpacity: 1,
             fillColor: 'lightgray'

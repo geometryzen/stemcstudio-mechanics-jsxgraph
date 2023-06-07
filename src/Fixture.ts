@@ -1,4 +1,5 @@
 import { Board, Point, PolygonAttributes, SegmentAttributes } from 'jsxgraph';
+import { strokeWidth } from './defaults';
 import { fnXY } from './math/fnXY';
 
 export const pxunit = 1 / 40
@@ -7,15 +8,21 @@ export interface Fixture {
     readonly pivot: Point;
 }
 
+export interface FixtureAttributes {
+    strokeWidth: number;
+}
+
 class FixtureImpl implements Fixture {
     readonly pivot: Point;
+    $strokeWidth: number;
     /**
      * 
      * @param board 
      * @param pivot 
      */
-    constructor(board: Board, pivot: Point) {
+    constructor(board: Board, pivot: Point, attributes?: FixtureAttributes) {
         this.pivot = pivot;
+        this.$strokeWidth = strokeWidth(attributes);
         // The problem with this implementation is that it is not dynamic.
         // I think I want all widgets to have control points.
         const a = 2 / 5
@@ -30,19 +37,27 @@ class FixtureImpl implements Fixture {
         const p: Point[] = []
         for (const c of coords) { p.push(board.create('point', c, { fixed: false, visible: false })) }
 
-        board.create('point', fnXY(pivot), { withLabel: false, fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: 1.5 })
+        board.create('point', fnXY(pivot), { withLabel: false, fillColor: 'white', strokeColor: 'black', size: 2, strokeWidth: this.$strokeWidth })
 
         board.create('polygon', [p[0], p[1], p[2]], {
             name: '',
             fillColor: "white", opacity: 1, layer: 7,
-            borders: { strokeWidth: 2, strokeColor: 'black', lineCap: 'round', layer: 8 },
+            borders: { strokeWidth: this.$strokeWidth, strokeColor: 'black', lineCap: 'round', layer: 8 },
             vertices: { fixed: true, size: 0 },
             fixed: true,
             frozen: true
         } as PolygonAttributes)
 
-        board.create('segment', [p[3], p[4]], { strokeWidth: 2, strokeColor: 'black', lineCap: 'round' } as SegmentAttributes)
-        board.create("comb", [p[4], p[3]], { fixed: true, width: 4 * pxunit, frequency: 4 * pxunit, angle: 45 * Math.PI / 180, layer: 8 })
+        board.create('segment', [p[3], p[4]], { strokeWidth: this.$strokeWidth, strokeColor: 'black', lineCap: 'round' } as SegmentAttributes)
+        board.create("comb", [p[4], p[3]], {
+            fixed: true,
+            width: 4 * pxunit,
+            frequency: 4 * pxunit,
+            angle: 45 * Math.PI / 180,
+            layer: 8,
+            // This does not appear to have any effect.
+            strokeWidth: this.$strokeWidth
+        })
 
         /*
         // dependent objects
