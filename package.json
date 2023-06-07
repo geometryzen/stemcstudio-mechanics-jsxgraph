@@ -1,6 +1,6 @@
 {
     "name": "@stemcstudio/mechanics-jsxgraph",
-    "version": "0.9.12",
+    "version": "0.9.13",
     "description": "Mechanics Diagrams using JSXGraph",
     "exports": {
         ".": {
