@@ -1,7 +1,7 @@
-export { Bar, BarAttributes, createBar } from './Bar';
-export { Beam, BeamAttributes, createBeam } from './Beam';
-export { DistributedLoad } from './DistributedLoad';
-export { Fixture } from './Fixture';
-export { createRope, Rope, RopeAttributes } from './Rope';
-export { Wheel } from './Wheel';
+export { Bar, bar, BarAttributes } from './Bar';
+export { Beam, beam, BeamAttributes } from './Beam';
+export { distributedLoad, DistributedLoad } from './DistributedLoad';
+export { Fixture, fixture } from './Fixture';
+export { rope, Rope, RopeAttributes } from './Rope';
+export { Wheel, wheel, WheelAttributes } from './Wheel';
 

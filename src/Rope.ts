@@ -1,4 +1,5 @@
 import { Board, Point, SegmentAttributes } from 'jsxgraph';
+import { DEFAULT_STROKE_WIDTH } from './defaults';
 
 export interface Rope {
     readonly centerA: Point;
@@ -14,7 +15,7 @@ function strokeWidth(attributes: RopeAttributes | undefined) {
         return attributes.strokeWidth;
     }
     else {
-        return 4;
+        return DEFAULT_STROKE_WIDTH;
     }
 }
 
@@ -60,7 +61,7 @@ class RopeImp implements Rope {
     }
 }
 
-export function createRope(board: Board, centerA: Point, radiusA: number, centerB: Point, radiusB: number, attributes?: RopeAttributes) {
+export function rope(board: Board, centerA: Point, radiusA: number, centerB: Point, radiusB: number, attributes?: RopeAttributes) {
     return new RopeImp(board, centerA, radiusA, centerB, radiusB, attributes);
 }
 

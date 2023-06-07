@@ -32,6 +32,6 @@ class BarImp implements Bar {
     }
 }
 
-export function createBar(board: Board, begin: Point, end: Point, attributes?: BarAttributes): Bar {
+export function bar(board: Board, begin: Point, end: Point, attributes?: BarAttributes): Bar {
     return new BarImp(board, begin, end, attributes);
 }

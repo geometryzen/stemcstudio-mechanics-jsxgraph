@@ -3,14 +3,19 @@ import { fnXY } from './math/fnXY';
 
 export const pxunit = 1 / 40
 
-export class Fixture {
+export interface Fixture {
+    readonly pivot: Point;
+}
+
+class FixtureImpl implements Fixture {
+    readonly pivot: Point;
     /**
      * 
      * @param board 
      * @param pivot 
-     * @param attitude 
      */
     constructor(board: Board, pivot: Point) {
+        this.pivot = pivot;
         // The problem with this implementation is that it is not dynamic.
         // I think I want all widgets to have control points.
         const a = 2 / 5
@@ -57,4 +62,8 @@ export class Fixture {
         this.c = board.create("comb", [p[4], p[3]], hatchStyle(pxunit))
         */
     }
+}
+
+export function fixture(board: Board, pivot: Point): Fixture {
+    return new FixtureImpl(board, pivot)
 }

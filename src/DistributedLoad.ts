@@ -2,8 +2,14 @@ import { Board } from 'jsxgraph';
 import { minus } from './math/minus';
 import { polar } from './math/polar';
 
-export class DistributedLoad {
+export interface DistributedLoad {
+    readonly phi: number;
+}
+
+class DistributedLoadImpl implements DistributedLoad {
+    readonly phi: number;
     constructor(board: Board, begin: [x: number, y: number], end: [x: number, y: number], beginValue: number, endValue: number, phi: number) {
+        this.phi = phi;
         const a = 2 / 5
         const [width, alpha] = polar(minus(end, begin))
         const s = [Math.sin(alpha + phi), Math.sin(alpha)]
@@ -43,4 +49,8 @@ export class DistributedLoad {
         }))
         */
     }
+}
+
+export function distributedLoad(board: Board, begin: [x: number, y: number], end: [x: number, y: number], beginValue: number, endValue: number, phi: number) {
+    return new DistributedLoadImpl(board, begin, end, beginValue, endValue, phi)
 }

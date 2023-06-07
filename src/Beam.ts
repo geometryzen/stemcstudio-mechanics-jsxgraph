@@ -7,6 +7,7 @@ export interface Beam {
 
 export interface BeamAttributes {
     radius: number;
+    strokeWidth: number;
 }
 
 class BeamImp {
@@ -124,6 +125,6 @@ class BeamImp {
     }
 }
 
-export function createBeam(board: Board, posA: Point, posB: Point, attributes: BeamAttributes) {
+export function beam(board: Board, posA: Point, posB: Point, attributes: BeamAttributes) {
     return new BeamImp(board, posA, posB, attributes);
 }
