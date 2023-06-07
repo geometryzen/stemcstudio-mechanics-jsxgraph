@@ -1,16 +1,26 @@
 import { Board, Point } from 'jsxgraph';
 
-export class Beam {
+export interface Beam {
     readonly pointA: Point;
     readonly pointB: Point;
+}
+
+export interface BeamAttributes {
+    radius: number;
+}
+
+class BeamImp {
+    readonly pointA: Point;
+    readonly pointB: Point;
+    $radius: number;
     /**
      * 
      * @param board 
      * @param posA 
      * @param posB 
-     * @param radius 
+     * @param attributes
      */
-    constructor(public readonly board: Board, posA: [x: number, y: number] | Point, posB: [x: number, y: number] | Point, radius: number) {
+    constructor(public readonly board: Board, posA: [x: number, y: number] | Point, posB: [x: number, y: number] | Point, attributes: BeamAttributes) {
         if (Array.isArray(posA)) {
             this.pointA = board.create("point", posA, { size: 0, withLabel: false });
         }
@@ -23,6 +33,7 @@ export class Beam {
         else {
             this.pointB = board.create("point", [function () { return posB.X() }, function () { return posB.Y() }], { size: 0, withLabel: false });
         }
+        this.$radius = attributes.radius;
         /**
          * Uses similar triangles to compute the points on the corners of the beam.
          */
@@ -32,7 +43,7 @@ export class Beam {
             const dx = this.pointB.X() - x;
             const dy = this.pointB.Y() - y;
             const l = Math.sqrt(dx ** 2 + dy ** 2);
-            const c = radius / l;
+            const c = this.$radius / l;
             return { x, y, dx, dy, c }
         }
         const cornerPoint1 = board.create("point",
@@ -111,4 +122,8 @@ export class Beam {
         })
         */
     }
+}
+
+export function createBeam(board: Board, posA: Point, posB: Point, attributes: BeamAttributes) {
+    return new BeamImp(board, posA, posB, attributes);
 }

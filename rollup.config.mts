@@ -42,7 +42,7 @@ const options: RollupOptions[] = [
         ]
     },
     {
-        input: 'dist/esm/index.d.ts',
+        input: 'dist/esm/types/src/index.d.ts',
         output: [{ file: packageJson.types, format: "esm" }],
         plugins: [dts()],
     }

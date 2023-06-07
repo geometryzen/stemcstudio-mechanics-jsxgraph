@@ -1,10 +1,34 @@
 import { Board, Point, SegmentAttributes } from 'jsxgraph';
 
-export class Rope {
+export interface Rope {
+    readonly centerA: Point;
+    readonly centerB: Point;
+}
+
+export interface RopeAttributes {
+    strokeWidth: number;
+}
+
+function strokeWidth(attributes: RopeAttributes | undefined) {
+    if (attributes && typeof attributes.strokeWidth === 'number') {
+        return attributes.strokeWidth;
+    }
+    else {
+        return 4;
+    }
+}
+
+class RopeImp implements Rope {
+    readonly centerA: Point;
+    readonly centerB: Point;
     readonly tangentPoint1: Point;
     readonly tangentPoint2: Point;
+    $strokeWidth: number;
     // TODO: Replace r1, r2 with control points?
-    constructor(public readonly board: Board, public readonly C1: Point, r1: number, public readonly C2: Point, r2: number) {
+    constructor(public readonly board: Board, public readonly C1: Point, r1: number, public readonly C2: Point, r2: number, attributes?: RopeAttributes) {
+        this.$strokeWidth = strokeWidth(attributes);
+        this.centerA = C1;
+        this.centerB = C2;
         this.tangentPoint1 = board.create("point",
             [
                 function () {
@@ -34,6 +58,10 @@ export class Rope {
         const atts: SegmentAttributes = { strokeWidth: 2, strokeColor: "black", lineCap: 'round' } as SegmentAttributes
         board.create("segment", [this.tangentPoint1, this.tangentPoint2], atts)
     }
+}
+
+export function createRope(board: Board, centerA: Point, radiusA: number, centerB: Point, radiusB: number, attributes?: RopeAttributes) {
+    return new RopeImp(board, centerA, radiusA, centerB, radiusB, attributes);
 }
 
 /**

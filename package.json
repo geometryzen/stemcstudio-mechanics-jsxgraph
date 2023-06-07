@@ -26,8 +26,9 @@
         "mechanics"
     ],
     "scripts": {
-        "build": "rollup --config rollup.config.mts --configPlugin @rollup/plugin-typescript",
+        "build": "npm run clean && rollup --config rollup.config.mts --configPlugin @rollup/plugin-typescript",
         "check": "npx package-check",
+        "clean": "rm -rf ./dist",
         "lint": "eslint . --ext '.ts,.tsx'",
         "docs": "npm run docs:typedoc && open-cli docs/index.html",
         "docs:typedoc": "rm -rf docs && typedoc --options typedoc.json",
