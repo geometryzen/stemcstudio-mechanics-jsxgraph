@@ -51,6 +51,6 @@ class DistributedLoadImpl implements DistributedLoad {
     }
 }
 
-export function distributedLoad(board: Board, begin: [x: number, y: number], end: [x: number, y: number], beginValue: number, endValue: number, phi: number) {
+export function distributedLoad(board: Board, begin: [x: number, y: number], end: [x: number, y: number], beginValue: number, endValue: number, phi: number): DistributedLoad {
     return new DistributedLoadImpl(board, begin, end, beginValue, endValue, phi)
 }

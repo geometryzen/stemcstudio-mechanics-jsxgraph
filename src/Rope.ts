@@ -61,7 +61,7 @@ class RopeImp implements Rope {
     }
 }
 
-export function rope(board: Board, centerA: Point, radiusA: number, centerB: Point, radiusB: number, attributes?: RopeAttributes) {
+export function rope(board: Board, centerA: Point, radiusA: number, centerB: Point, radiusB: number, attributes?: RopeAttributes): Rope {
     return new RopeImp(board, centerA, radiusA, centerB, radiusB, attributes);
 }
 

@@ -32,6 +32,6 @@ class WheelImp implements Wheel {
     }
 }
 
-export function wheel(board: Board, center: Point, radius: number, attributes?: WheelAttributes) {
+export function wheel(board: Board, center: Point, radius: number, attributes?: WheelAttributes): Wheel {
     return new WheelImp(board, center, radius, attributes)
 }

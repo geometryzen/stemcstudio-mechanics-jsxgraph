@@ -125,6 +125,6 @@ class BeamImp {
     }
 }
 
-export function beam(board: Board, posA: Point, posB: Point, attributes: BeamAttributes) {
+export function beam(board: Board, posA: Point, posB: Point, attributes: BeamAttributes): Beam {
     return new BeamImp(board, posA, posB, attributes);
 }
